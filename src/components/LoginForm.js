@@ -12,10 +12,13 @@ class LoginForm extends Component
             return <Redirect to='/' />
           }
           return(
-            <div>
-                <h3 className = 'center'> Would you rather App - Welcome </h3> 
-                <h5 className = 'center'>Press sign in to continue</h5>
-                <h3 className = 'center'>Sign in </h3>
+            <div className = 'login'>
+                <div className = 'loginHeader'> 
+                    <h3 className = 'center'> Would you rather App - Welcome </h3> 
+                    <h5 className = 'center'>Press sign in to continue</h5>
+                </div>
+                <img src ="http://stickersmag.com/wp-content/uploads/2018/03/s-l500.jpg" className = "formAvatar"></img>
+                <h3 className = 'center'> <span className ='signInTxt'>Sign in </span></h3>
                 <form className='logForm' onSubmit={this.handleSubmit}>
                 <select className='slct'> 
                 </select>
