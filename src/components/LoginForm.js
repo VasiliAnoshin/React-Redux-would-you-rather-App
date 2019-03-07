@@ -17,16 +17,16 @@ class LoginForm extends Component
                     <h3 className = 'center'> Would you rather App - Welcome </h3> 
                     <h5 className = 'center'>Press sign in to continue</h5>
                 </div>
-                <img src ="http://stickersmag.com/wp-content/uploads/2018/03/s-l500.jpg" className = "formAvatar"></img>
+                <img src ="http://stickersmag.com/wp-content/uploads/2018/03/s-l500.jpg" className = "formAvatar" alt="avatar"></img>
                 <h3 className = 'center'> <span className ='signInTxt'>Sign in </span></h3>
                 <form className='logForm' onSubmit={this.handleSubmit}>
-                <select className='slct'> 
-                </select>
-                <button
-                    className='btn'
-                    type='submit'>
-                    Submit
-                </button>
+                    <select className='slct'> 
+                    </select>
+                    <button
+                        className='btn'
+                        type='submit'>
+                        Submit
+                    </button>
                 </form>
             </div>
           )
