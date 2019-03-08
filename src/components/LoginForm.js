@@ -3,7 +3,8 @@ import { Redirect } from 'react-router-dom'
 
 class LoginForm extends Component
 {
-    state ={
+    state =
+    {
         toHome: false,
     }
     render(){
