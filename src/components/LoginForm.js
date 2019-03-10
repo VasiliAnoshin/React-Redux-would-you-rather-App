@@ -1,5 +1,6 @@
 import React , {Component} from 'react'
 import { Redirect } from 'react-router-dom'
+import {connect} from 'react-redux'
 
 class LoginForm extends Component
 {
@@ -8,10 +9,11 @@ class LoginForm extends Component
         toHome: false,
     }
     render(){
-        const { toHome } = this.state
+        const { toHome } = this.props
         if (toHome === true) {
             return <Redirect to='/' />
           }
+          const {users} = this.props;
           return(
             <div className = 'login'>
                 <div className = 'loginHeader'> 
@@ -21,7 +23,12 @@ class LoginForm extends Component
                 <img src ="http://stickersmag.com/wp-content/uploads/2018/03/s-l500.jpg" className = "formAvatar" alt="avatar"></img>
                 <h3 className = 'center'> <span className ='signInTxt'>Sign in </span></h3>
                 <form className='logForm' onSubmit={this.handleSubmit}>
-                    <select className='slct'> 
+                    <select className='slct'>
+                    { users.length > 0 && (
+                        <option key ={45}>
+                            BlaBLAbla
+                        </option>)
+                    }
                     </select>
                     <button
                         className='btn'
@@ -34,4 +41,9 @@ class LoginForm extends Component
     }
 }
 
-export default LoginForm
+function mapStateToProps(state = {}) {
+    // const { users } = state
+    return { users : state.users }
+  }
+
+export default connect(mapStateToProps)(LoginForm)
