@@ -24,10 +24,11 @@ class LoginForm extends Component
                 <h3 className = 'center'> <span className ='signInTxt'>Sign in </span></h3>
                 <form className='logForm' onSubmit={this.handleSubmit}>
                     <select className='slct'>
-                    { users.length > 0 && (
-                        <option key ={45}>
-                            BlaBLAbla
-                        </option>)
+                    { Object.values(users) !== null  && ( Object.values(users).map((user) => 
+                        // <img src={user.avatarURL} alt="selectLogo"></img>
+                        <option key ={user.id}>
+                            {user.name}
+                        </option>))
                     }
                     </select>
                     <button
