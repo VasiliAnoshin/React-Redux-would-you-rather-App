@@ -16,7 +16,6 @@ class LoginForm extends Component
         const {dispatch} = this.props
         const id = this.selectVal.value
         dispatch(setAuthedUser(id))
-        
         // console.log(this.state.toHome)
         // this.setState({
         //     toHome: id === null ? false : true,
