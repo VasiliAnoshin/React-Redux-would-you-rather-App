@@ -5,17 +5,16 @@ class LogOut extends Component
 {
     handleLogOut= (e) => {
         const boom = 'Clac Clac !!!'
+        console.log(boom)
     }
     render(){
     return (
         <nav className='logoutNav'>
           <ul>
             <li>
-                Hello {this.props.id}  
+                 <span>Hello {this.props.id}</span>
                 <img src={this.props.imgUrl} alt='logoUrl'className ='logOutImg'/>
-                {/* <form onSubmit={this.handleSubmit} > */}
-                <button onclick={this.handleLogOut}> LogOut </button>
-                {/* </form> */}
+                <button onClick={this.handleLogOut}> LogOut </button>
             </li>
           </ul>
         </nav>
