@@ -6,6 +6,8 @@ import LoginForm from './LoginForm'
 import { handleInitialUsers } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from '../components/Dashboard'
+import NewQuestion from '../components/NewQuestion'
+import LogOut from '../components/LogOut'
 
 
 class App extends Component {
@@ -25,7 +27,9 @@ class App extends Component {
                 </div>
                 :
                 <div>
-                  <Route path='/' exact component={Dashboard} />
+                  <LogOut id ={this.props.authedUser}/>
+                  <Route path='/' exact component={Dashboard}  initial={true}/>
+                  <Route path='/add' component ={NewQuestion} />
                 </div> 
             }
         </div>
@@ -34,9 +38,12 @@ class App extends Component {
   }
 }
 
-function mapStateToProps({authedUser}){
+function mapStateToProps({authedUser,users}){
+  // const authedUser
   return {
+    authedUser,
     loading: authedUser === null
+    
   }
 }
 

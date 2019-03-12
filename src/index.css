@@ -17,6 +17,17 @@ code {
   margin: 0 auto;
   padding: 10px;
 }
+
+.logOutImg{
+  width: 30px;
+  height: 30px;
+}
+.logoutNav {
+  position:fixed;
+  right:10px;
+  top:5px;
+}
+
 ul {
   padding-left: 0;
 }
