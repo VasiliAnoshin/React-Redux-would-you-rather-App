@@ -5,6 +5,7 @@ import Nav from './Nav'
 import LoginForm from './LoginForm'
 import { handleInitialUsers } from '../actions/shared'
 import { connect } from 'react-redux'
+import Dashboard from '../components/Dashboard'
 
 
 class App extends Component {
@@ -17,13 +18,27 @@ class App extends Component {
     return (
       <Router>
         <div className='container'>
-          <Nav />
-          <LoginForm />
+            <Nav />
+            {this.props.loading == true ?
+                <div>
+                  <LoginForm />
+                </div>
+                :
+                <div>
+                  <Route path='/' exact component={Dashboard} />
+                </div> 
+            }
         </div>
       </Router>
     );
   }
 }
 
-export default connect()(App);
+function mapStateToProps({authedUser}){
+  return {
+    loading: authedUser === null
+  }
+}
+
+export default connect(mapStateToProps)(App);
 
