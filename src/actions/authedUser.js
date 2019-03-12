@@ -1,4 +1,5 @@
 export const SET_AUTHED_USER = 'SET_AUTHED_USER'
+export const REMOVE_AUTHED_USER = 'REMOVE_AUTHED_USER'
 
 export function setAuthedUser(id){
     return{
@@ -6,3 +7,11 @@ export function setAuthedUser(id){
         id,
     }
 }
+
+export function removeAuthedUser(){
+    return{
+        type:REMOVE_AUTHED_USER
+    }
+}
+
+

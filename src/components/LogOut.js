@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
+import {removeAuthedUser} from '../actions/authedUser'
 
 class LogOut extends Component 
 {
     handleLogOut= (e) => {
-        const boom = 'Clac Clac !!!'
-        console.log(boom)
+        const {dispatch} = this.props;
+        dispatch(removeAuthedUser(this.props.id))
     }
     render(){
     return (
