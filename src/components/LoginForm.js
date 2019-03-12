@@ -10,24 +10,27 @@ class LoginForm extends Component
         toHome: false,
     }
 
-    handleSubmit = (e) => {
+    handleSubmit = (e) => 
+    {
         e.preventDefault();
         const {dispatch} = this.props
         const id = this.selectVal.value
         dispatch(setAuthedUser(id))
-
-        this.setState({
-            toHome: id === null ? false : true,
-             // toHome: true,
-          })
-         console.log(this.state.toHome)
+        
+        // console.log(this.state.toHome)
+        // this.setState({
+        //     toHome: id === null ? false : true,
+        //     //toHome :true
+        //   })
+        //  console.log(this.state.toHome)
     }
 
     render(){
         const { toHome } = this.props
-        if (toHome === true) {
-            return <Redirect to='/' />
-          }
+        // if (toHome === true) {
+        //     console.log('Enter inside toHome ===true section')
+        //     return <Redirect to='/' />
+        //   }
           const {users} = this.props;
           return(
             <div className = 'login'>
