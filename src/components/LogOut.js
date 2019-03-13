@@ -13,9 +13,9 @@ class LogOut extends Component
         <nav className='logoutNav'>
           <ul>
             <li>
-                 <span>Hello {this.props.id}</span>
+                <span>Hello {this.props.id}</span>
                 <img src={this.props.imgUrl} alt='logoUrl'className ='logOutImg'/>
-                <button onClick={this.handleLogOut}> LogOut </button>
+                <button onClick={this.handleLogOut} className = 'exit-btn'> LogOut </button>
             </li>
           </ul>
         </nav>

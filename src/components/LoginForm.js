@@ -1,35 +1,20 @@
 import React , {Component} from 'react'
-import { Redirect } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {setAuthedUser} from '../actions/authedUser'
+import {withRouter} from "react-router-dom";
 
 class LoginForm extends Component
 {
-    state =
-    {
-        toHome: false,
-    }
-
     handleSubmit = (e) => 
     {
         e.preventDefault();
         const {dispatch} = this.props
         const id = this.selectVal.value
         dispatch(setAuthedUser(id))
-        // console.log(this.state.toHome)
-        // this.setState({
-        //     toHome: id === null ? false : true,
-        //     //toHome :true
-        //   })
-        //  console.log(this.state.toHome)
+        this.props.history.push('/')
     }
 
     render(){
-        const { toHome } = this.props
-        // if (toHome === true) {
-        //     console.log('Enter inside toHome ===true section')
-        //     return <Redirect to='/' />
-        //   }
           const {users} = this.props;
           return(
             <div className = 'login'>
@@ -59,7 +44,10 @@ class LoginForm extends Component
 }
 
 function mapStateToProps(state = {}) {
-    return { users : state.users, dispatch : state }
+    return { 
+        users : state.users, 
+        dispatch : state,
+     }
   }
 
-export default connect(mapStateToProps)(LoginForm)
+export default withRouter(connect(mapStateToProps)(LoginForm))
