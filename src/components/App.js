@@ -9,7 +9,6 @@ import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
 import LogOut from '../components/LogOut'
 
-
 class App extends Component {
   
   componentDidMount(){
@@ -39,11 +38,9 @@ class App extends Component {
 }
 
 function mapStateToProps({authedUser,users}){
-  // const authedUser
   return {
     authedUser,
     loading: authedUser === null
-    
   }
 }
 

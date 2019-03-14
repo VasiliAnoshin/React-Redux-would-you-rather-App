@@ -143,3 +143,35 @@ li {
   -moz-transition: all 0.3s;
   transition: all 0.3s;  
 }
+
+.SubMenu {
+  width: 700px;
+  list-style-type: none;
+  margin: 30px 100px;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid #e7e7e7;
+  background-color: #f3f3f3;
+}
+
+.SubMenuOption {
+  float: left;
+}
+
+.SubMenuOption .PollLstBtn {
+  display: block;
+  border: none;
+  color: #666;
+  text-align: center;
+  padding: 10px 96px;
+  text-decoration: none;
+}
+
+.SubMenuOption .PollLstBtn:hover:not(.active) {
+  background-color: yellowgreen;
+}
+
+.SubMenuOption .PollLstBtn.active {
+  color: white;
+  background-color: #4CAF50;
+}
