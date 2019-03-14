@@ -7,23 +7,24 @@ class Dashboard extends Component{
 
         this.state = {
             ansBtnStyle : 'PollLstBtn',
-            notAnswBtnStyle: 'active PollLstBtn'
+            notAnswBtnStyle: 'active PollLstBtn',
+            section : 'UnAnsweredQuestion'
         }
-
-        this.Answered = React.createRef();
     }
 
     handleClick= (e) => {
         this.setState({
             ansBtnStyle: 'active PollLstBtn',
-            notAnswBtnStyle: 'PollLstBtn'
+            notAnswBtnStyle: 'PollLstBtn',
+            section: 'AnsweredQuestions'
         })
     }
 
     notAnswHandleClick =(e) =>{
         this.setState({
             ansBtnStyle: 'PollLstBtn',
-            notAnswBtnStyle: 'active PollLstBtn'
+            notAnswBtnStyle: 'active PollLstBtn',
+            section: 'UnAnsweredQuestions'
         })
     }
 
@@ -40,7 +41,13 @@ class Dashboard extends Component{
                         <button  className = {this.state.notAnswBtnStyle} onClick={this.notAnswHandleClick} > Unanswered questions </button>
                     </li>
                 </ul>
-                
+                {this.state.section === 'AnsweredQuestions' ?
+                    <PollList />
+                    :
+                    // <PollList />
+                    // <span> Bla Bla Bla !!!</span>
+                    <PollList />
+                }
 
             </div>
         )

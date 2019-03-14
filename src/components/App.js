@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import './App'
 import Nav from './Nav'
 import LoginForm from './LoginForm'
-import { handleInitialUsers } from '../actions/shared'
+import { handleInitialUsers, getQuestions } from '../actions/shared'
 import { connect } from 'react-redux'
 import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
@@ -13,6 +13,7 @@ class App extends Component {
   
   componentDidMount(){
     this.props.dispatch(handleInitialUsers())
+    this.props.dispatch(getQuestions())
   }
 
   render() {
@@ -20,7 +21,7 @@ class App extends Component {
       <Router>
         <div className='container'>
             <Nav />
-            {this.props.loading == true ?
+            {this.props.loading === true ?
                 <div>
                   <LoginForm />
                 </div>
