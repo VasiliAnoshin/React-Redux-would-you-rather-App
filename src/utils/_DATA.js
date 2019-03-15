@@ -2,7 +2,7 @@ let users = {
   sarahedo: {
     id: 'sarahedo',
     name: 'Sarah Edo',
-    avatarURL: 'http://www.iconarchive.com/download/i60029/mattahan/ultrabuuf/Comics-Mask.ico',
+    avatarURL: "http://www.iconarchive.com/download/i60029/mattahan/ultrabuuf/Comics-Mask.ico",
     answers: {
       "8xf0y6ziyjabvozdd253nd": 'optionOne',
       "6ni6ok3ym7mf1p33lnez": 'optionTwo',
