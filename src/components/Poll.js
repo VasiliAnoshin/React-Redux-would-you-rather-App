@@ -30,4 +30,4 @@ class Poll extends Component {
     }
 }
 
-export default Poll ;
+export default Poll;
