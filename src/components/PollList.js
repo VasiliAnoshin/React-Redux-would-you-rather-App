@@ -5,6 +5,7 @@ import Poll from '../components/Poll'
 class PollList extends Component {
     
     render(){
+        console.log(this.props.filteredQuestions)
         return (
             <div>
                 <ul>
@@ -20,11 +21,12 @@ class PollList extends Component {
     }
 }
 
-function mapStateToProps({questions, users, authedUser}, sectionChoice ){
+function mapStateToProps({questions, users, authedUser}, list ){
     const userAnswers = users[authedUser].answers
     console.log(userAnswers)
-    console.log(sectionChoice)
-    const filteredQuestions = (sectionChoice === 2) ?
+    console.log(list)
+    console.log(list.sectionChoice === 2)
+    const filteredQuestions = (list.sectionChoice === 2) ?
      (Object.keys(questions).filter(key => !Object.keys(userAnswers).includes(key))
     .reduce((obj, key) => {
         return{
@@ -40,11 +42,18 @@ function mapStateToProps({questions, users, authedUser}, sectionChoice ){
                 [key] : questions[key]
             }
         },{}))
-     console.log(filteredQuestions)
-    
+     
+        console.log(filteredQuestions)
     return {
         users,
-        filteredQuestions,
+        filteredQuestions : Object.keys(filteredQuestions)
+        .sort((a,b) => filteredQuestions[a].timestamp - filteredQuestions[b].timestamp)
+        .reduce((obj,key) =>{
+            return{
+                ...obj,
+                [key] : filteredQuestions[key]
+            }
+        },{}),
         authedUser
     }
 }
