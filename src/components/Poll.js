@@ -7,12 +7,12 @@ class Poll extends Component {
     }
     render(){
         return(
-            <div>
-                <p> {this.props.userName} asks : </p>
-                <img src={this.props.imgUrl} alt='logoUrl'className ='logOutImg'/>
+            <div className = "poll">
+                <p className = "pollAuther"> {this.props.userName} asks : </p>
+                <img src={this.props.imgUrl} alt='logoUrl'className ='pollImg '/>
                 <p> Would you rather : </p>
                 <span> {this.props.questionText} </span>
-                <button onClick={this.handleLogOut} > LogOut </button>
+                <button onClick={this.handleLogOut} > View Poll </button>
             </div>
         )
     }
