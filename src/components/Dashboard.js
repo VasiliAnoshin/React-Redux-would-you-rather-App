@@ -42,11 +42,9 @@ class Dashboard extends Component{
                     </li>
                 </ul>
                 {this.state.section === 'AnsweredQuestions' ?
-                    <PollList />
+                    <PollList sectionChoice = {1}/>
                     :
-                    // <PollList />
-                    // <span> Bla Bla Bla !!!</span>
-                    <PollList />
+                    <PollList sectionChoice = {2}/>
                 }
 
             </div>
