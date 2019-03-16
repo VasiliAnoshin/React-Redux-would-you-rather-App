@@ -6,6 +6,10 @@ class NewQuestion extends Component{
         secondOptText: ''
     }
 
+    handleSubmit =(e) =>
+    {
+
+    }
     firstOptionHandleChange = (e) => {
         const firstOptText = e.target.value
     
