@@ -1,20 +1,29 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
+import {handleAddQuestion} from '../actions/questions'
+import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component{
     state = {
         firstOptText: '',
-        secondOptText: ''
+        secondOptText: '',
+        toHome: false
     }
 
     handleSubmit =(e) =>
     {
         const {firstOptText , secondOptText } = this.state
 
+        const {dispatch} = this.props
+
+        dispatch(handleAddQuestion(firstOptText, secondOptText))
+
         this.setState(() => ({
             firstOptText:  '',
-            secondOptText: ''
+            secondOptText: '',
+            toHome:true
           }))
+
     }
     firstOptionHandleChange = (e) => {
         const firstOptText = e.target.value
@@ -34,7 +43,11 @@ class NewQuestion extends Component{
 
 
     render(){
-        const {firstOptText,secondOptText} = this.state
+        const {firstOptText,secondOptText, toHome} = this.state
+        // {/* todo:  Redirect to Home View if submitted*/}
+        if(toHome === true){
+            return <Redirect to='/' />
+        }
         return(    
             <div className = "newPoll">
             <p className = "pollAuther"> Create New Question </p>
