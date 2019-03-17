@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
 class NewQuestion extends Component{
     state = {
@@ -8,7 +9,12 @@ class NewQuestion extends Component{
 
     handleSubmit =(e) =>
     {
+        const {firstOptText , secondOptText } = this.state
 
+        this.setState(() => ({
+            firstOptText:  '',
+            secondOptText: ''
+          }))
     }
     firstOptionHandleChange = (e) => {
         const firstOptText = e.target.value
@@ -56,7 +62,8 @@ class NewQuestion extends Component{
                     </textarea> 
                     <button
                         className='btn'
-                        type='submit'>
+                        type='submit'
+                        disabled = {firstOptText ==='' || secondOptText ===''}>
                         Submit
                     </button> 
             </form>
@@ -65,4 +72,4 @@ class NewQuestion extends Component{
     }
 }
 
-export default NewQuestion;
+export default connect()(NewQuestion);
