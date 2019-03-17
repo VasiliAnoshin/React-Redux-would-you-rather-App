@@ -9,6 +9,7 @@ import { connect } from 'react-redux'
 import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
 import LogOut from '../components/LogOut'
+import LeaderBoard from '../components/LeaderBoard'
 
 
 class App extends Component {
@@ -34,6 +35,7 @@ class App extends Component {
                   <LogOut id ={this.props.authedUser}/>
                   <Route path='/' exact component={Dashboard}  initial={true}/>
                   <Route path='/add' component ={NewQuestion} />
+                  <Route path='/leaderBoard' component = {LeaderBoard} />
                 </div> 
             }
         </div>
