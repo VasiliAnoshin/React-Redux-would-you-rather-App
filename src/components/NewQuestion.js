@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {handleAddQuestion} from '../actions/questions'
+import {handleAddQuestion} from '../actions/shared'
 import { Redirect } from 'react-router-dom'
 
 class NewQuestion extends Component{
@@ -44,7 +44,6 @@ class NewQuestion extends Component{
 
     render(){
         const {firstOptText,secondOptText, toHome} = this.state
-        // {/* todo:  Redirect to Home View if submitted*/}
         if(toHome === true){
             return <Redirect to='/' />
         }
