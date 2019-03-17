@@ -1,8 +1,9 @@
 import {_getUsers} from '../utils/_DATA'
-import {receiveUsers} from '../actions/users'
+import {receiveUsers,addQuestToUser} from '../actions/users'
 import {showLoading, hideLoading} from 'react-redux-loading'
 import {_getQuestions} from '../utils/_DATA'
-import {receiveQuestions} from '../actions/questions'
+import {receiveQuestions,addQuestion} from '../actions/questions'
+import {_saveQuestion} from '../utils/_DATA'
 
 export function handleInitialUsers() {
     return(dispatch) =>{
@@ -19,5 +20,24 @@ export function getQuestions(){
         _getQuestions().then(({...questions}) => {
             dispatch(receiveQuestions(questions))
         })
+    }
+}
+
+export function handleAddQuestion (optionOneText, optionTwoText) {
+    return (dispatch, getState) => {
+        const { authedUser } = getState()
+
+        dispatch(showLoading())
+
+        return _saveQuestion({
+            optionOneText,
+            optionTwoText,
+            author: authedUser
+        })
+        .then((question,users) => {
+            dispatch(addQuestion(question));
+            dispatch(addQuestToUser(question))
+        })
+        .then(() => dispatch(hideLoading()))
     }
 }
