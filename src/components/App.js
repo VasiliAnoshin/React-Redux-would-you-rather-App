@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch  } from 'react-router-dom'
 import './App'
 import Nav from './Nav'
 import LoginForm from './LoginForm'
@@ -33,9 +33,11 @@ class App extends Component {
                 :
                 <div>
                   <LogOut id ={this.props.authedUser}/>
-                  <Route path='/' exact component={Dashboard}  initial={true}/>
-                  <Route path='/add' component ={NewQuestion} />
-                  <Route path='/leaderBoard' component = {LeaderBoard} />
+                  <Switch>
+                    <Route path='/' exact component={Dashboard}  />
+                    <Route path='/add' exact component ={NewQuestion} />
+                    <Route path='/leaderBoard' exact component = {LeaderBoard} />
+                  </Switch>
                 </div> 
             }
         </div>
