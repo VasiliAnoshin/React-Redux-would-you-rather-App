@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Poll from '../components/Poll'
 
 class PollList extends Component {
-    
     render(){
         console.log(this.props.filteredQuestions)
         return (
@@ -12,7 +11,8 @@ class PollList extends Component {
                     {
                         Object.values(this.props.filteredQuestions).map((question) => 
                         <li key = {question.id}>
-                            <Poll userName = {question.author} imgUrl = {this.props.users[question.author].avatarURL} questionText = {question.optionOne.text}/>
+                            <Poll userName = {question.author} imgUrl = {this.props.users[question.author].avatarURL} 
+                            questionText = {question.optionOne.text} questionId = {question.id}/>
                         </li>
                     )}
                 </ul>

@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
+import { Link, withRouter } from 'react-router-dom'
 
 class Poll extends Component {
 
-    handleLogOut(){
-        //<TODO> add functionality  
-    }
+    handleClick(){
+
+    } 
+    
     render(){
         return(
+            // <Link to={`/questions/:${this.props.questionId}`}>
             <div className = "poll">
                 <p className = "pollAuther"> {this.props.userName} asks : </p>
                  <hr/>
@@ -21,11 +24,12 @@ class Poll extends Component {
                         <p> Would you rather : </p>
                         <p> {this.props.questionText} </p>
                         <div>
-                            <button onClick={this.handleLogOut} className = "pollBtn"  align="center"> View Poll </button> 
+                            <button onClick={this.handleClick} className = "pollBtn"  align="center"> View Poll </button> 
                         </div>
                     </div>
                 </div>
             </div>
+        // </Link>
         )
     }
 }
