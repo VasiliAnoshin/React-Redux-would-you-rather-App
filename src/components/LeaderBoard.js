@@ -20,14 +20,13 @@ class LeaderBoard extends Component
                                     <div className = "middle">
                                         <hr width="1" size="100" ></hr>
                                     </div>
-                                    <p>Answered questions : {Object.keys(this.props.users[key].answers).length}</p>
-                                    <p>Created  questions : {this.props.users[key].questions.length} </p>
-                                    <hr width="1" size="100" ></hr>
                                     <div className = "right">
+                                        <p>Answered questions : {Object.keys(this.props.users[key].answers).length}</p>
+                                        <p>Created  questions : {this.props.users[key].questions.length} </p>
                                         <div className = "smallPoll" >
-                                        <p className = "pollAuther"> Score :  </p>
-                                        <hr/>
-                                            {Object.keys(this.props.users[key].answers).length + this.props.users[key].questions.length}
+                                            <p className = "score"> Score :  </p>
+                                            <hr/>
+                                            <h3 className ="scoreRes"> {Object.keys(this.props.users[key].answers).length + this.props.users[key].questions.length} </h3>
                                         </div>
                                        
                                     </div>
