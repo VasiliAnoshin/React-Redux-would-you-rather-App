@@ -10,6 +10,7 @@ import Dashboard from '../components/Dashboard'
 import NewQuestion from '../components/NewQuestion'
 import LogOut from '../components/LogOut'
 import LeaderBoard from '../components/LeaderBoard'
+import Question from '../components/Question'
 
 
 class App extends Component {
@@ -37,6 +38,7 @@ class App extends Component {
                     <Route path='/' exact component={Dashboard}  />
                     <Route path='/add' exact component ={NewQuestion} />
                     <Route path='/leaderBoard' exact component = {LeaderBoard} />
+                    <Route path = 'questions/:question_id' component = {Question}/>
                   </Switch>
                 </div> 
             }
