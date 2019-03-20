@@ -1,11 +1,15 @@
 import React, {Component} from 'react'
 import { Link, withRouter } from 'react-router-dom'
+// import { BrowserRouter, Route } from 'react-router-dom'
+// import {connect} from 'react-redux'
 
 class Poll extends Component {
 
-    handleClick(){
-
-    } 
+    // handleClick(e){
+        
+    //     console.log('Inside handle log')
+    //     this.props.history.push('/')
+    //  } 
     
     render(){
         return(
@@ -24,7 +28,8 @@ class Poll extends Component {
                         <p> Would you rather : </p>
                         <p> {this.props.questionText} </p>
                         <div>
-                            <button onClick={this.handleClick} className = "pollBtn"  align="center"> View Poll </button> 
+                            {/* <button onClick={this.handleClick} className = "pollBtn"  align="center"> View Poll </button>  */}
+                            <Link to={`/questions/:${this.props.questionId}`}>Poll Option</Link>
                         </div>
                     </div>
                 </div>
@@ -34,4 +39,11 @@ class Poll extends Component {
     }
 }
 
-export default Poll;
+// function mapStateToProps(state = {}) {
+//     return { 
+//         dispatch : state,
+//      }
+//   }
+
+// export default withRouter(connect(mapStateToProps)(Poll));
+export default (Poll);
