@@ -4,13 +4,11 @@ import { Link, withRouter } from 'react-router-dom'
 // import {connect} from 'react-redux'
 
 class Poll extends Component {
-
     // handleClick(e){
         
     //     console.log('Inside handle log')
     //     this.props.history.push('/')
     //  } 
-    
     render(){
         return(
             // <Link to={`/questions/:${this.props.questionId}`}>
