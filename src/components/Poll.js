@@ -1,17 +1,10 @@
 import React, {Component} from 'react'
-import { Link, withRouter } from 'react-router-dom'
-// import { BrowserRouter, Route } from 'react-router-dom'
-// import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class Poll extends Component {
-    // handleClick(e){
-        
-    //     console.log('Inside handle log')
-    //     this.props.history.push('/')
-    //  } 
     render(){
         return(
-            // <Link to={`/questions/:${this.props.questionId}`}>
+
             <div className = "poll">
                 <p className = "pollAuther"> {this.props.userName} asks : </p>
                  <hr/>
@@ -26,22 +19,13 @@ class Poll extends Component {
                         <p> Would you rather : </p>
                         <p> {this.props.questionText} </p>
                         <div>
-                            {/* <button onClick={this.handleClick} className = "pollBtn"  align="center"> View Poll </button>  */}
-                            <Link to={`/questions/:${this.props.questionId}`}>Poll Option</Link>
+                            <Link to={`/questions/${this.props.questionId}`}>Poll Option</Link>
                         </div>
                     </div>
                 </div>
             </div>
-        // </Link>
         )
     }
 }
 
-// function mapStateToProps(state = {}) {
-//     return { 
-//         dispatch : state,
-//      }
-//   }
-
-// export default withRouter(connect(mapStateToProps)(Poll));
 export default (Poll);
