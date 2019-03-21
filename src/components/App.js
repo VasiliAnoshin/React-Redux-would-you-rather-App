@@ -11,6 +11,7 @@ import NewQuestion from '../components/NewQuestion'
 import LogOut from '../components/LogOut'
 import LeaderBoard from '../components/LeaderBoard'
 import Question from '../components/Question'
+import ErrorPage from '../components/ErrorPage'
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
                     <Route path='/add' exact component ={NewQuestion} />
                     <Route path='/leaderBoard' exact component = {LeaderBoard} />
                     <Route path = '/questions/:question_id' component = {Question}/>
+                    <Route path = '/ErrorPage' component = {ErrorPage} />
                   </Switch>
                 </div> 
             }
