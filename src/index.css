@@ -245,3 +245,10 @@ li {
 .scoreRes{
   text-align: center;
 }
+/* Questions section */
+.questPoll{
+  border:0.5px solid black;
+  width: 500px;
+  height: 270px;
+  margin:  auto;
+}

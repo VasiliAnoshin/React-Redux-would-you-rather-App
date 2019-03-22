@@ -3,14 +3,27 @@ import { connect } from 'react-redux'
 
 class Question extends Component {
 
+    handleLogOut(){
+        console.log("add new answer !!!!")
+    }
+
     render() {
         return (
-            <div className = "poll">
+            <div className = "questPoll">
                <p className = "pollAuther">Asked by {this.props.userName} </p>
                <hr/>
                <div className ="parent"> 
                     <div className = "left">
                         <img src={this.props.userUrl} alt='logoUrl'className ='pollImg '/>
+                    </div>
+                    <div className = "middle">
+                        <hr width="1" size="100" ></hr>
+                    </div>
+                    <div className = "right">
+                         <p>Would You Rather : </p>
+                        <p><input type="radio" value="option1" checked={true} /> {this.props.OptionOne}</p>
+                        <p><input type="radio" value="option2" checked={false} />{this.props.OptionTwo}</p>
+                        <button onClick={this.handleLogOut}> Submit </button>
                     </div>
                 </div>
             </div>
