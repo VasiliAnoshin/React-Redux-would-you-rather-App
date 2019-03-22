@@ -29,12 +29,22 @@ class Question extends Component {
                     <div className = "middle">
                         <hr width="1" size="100" ></hr>
                     </div>
-                    <div className = "right">
-                         <p>Would You Rather : </p>
-                        <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne}</p>
-                        <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo}</p>
-                        <button onClick={this.handleLogOut}> Submit </button>
-                    </div>
+                    { this.props.vote === false ?
+                        <div className = "right">
+                            <p>Would You Rather : </p>
+                            <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne}</p>
+                            <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo}</p>
+                            <button onClick={this.handleLogOut}> Save Answer </button>
+                        </div>
+                        :
+                        <div>
+                            <div className = "right">
+                            <p>Results : </p>
+                             <p> Would you rather : {this.props.OptionOne}</p>
+                             <p> Would you rather : {this.props.OptionTwo}</p>
+                            </div>
+                        </div>
+                    }
                 </div>
             </div>
         )
@@ -42,6 +52,7 @@ class Question extends Component {
 }
 
 function mapStateToProps({questions, authedUser, users}, props) {
+    //< TODO > What to do if question doesn't exist
     const{question_id} = props.match.params;
     console.log(question_id)
     const allQuestions = questions //< TODO > Decide is i need all questions  ??? 
@@ -59,14 +70,19 @@ function mapStateToProps({questions, authedUser, users}, props) {
     OptionTwo = allQuestions[question_id].optionTwo.text
     console.log(OptionTwo);
 
-    //this.props.history.push(`/ErrorPage`)
+    let vote = allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
+    console.log(allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes))
+    console.log(vote)
 
+    // let vote =Object.assign({},allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes).hasOwnProperty(userName)
+    // console.log(Object.assign({},allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes))
+    //let vote = {...allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes }
+    //this.props.history.push(`/ErrorPage`)
     // questions[question_id] === false ?
     // {
-      
     // }
           
-         //  userUrl = usersLst[questions[question_id].author].avatarURL,
+    //  userUrl = usersLst[questions[question_id].author].avatarURL,
     // //     //  OptionOne = allQuestions[question_id].optionOne.text,
     // //     //  OptionTwo = allQuestions[question_id].OptionTwo.text
     // }:
@@ -81,17 +97,13 @@ function mapStateToProps({questions, authedUser, users}, props) {
         userUrl,
         OptionOne,
         OptionTwo,
-        userName
+        userName,
+        vote
         //curUser
         // userUrl,
         // OptionOne,
         // OptionTwo
     })
-
-    // function newFunction() {
-    //     const userName, userUrl, OptionOne, OptionTwo;
-    //     return { userName, userUrl, OptionOne, OptionTwo };
-    // }
     }
 
 export default  connect(mapStateToProps)(Question)
