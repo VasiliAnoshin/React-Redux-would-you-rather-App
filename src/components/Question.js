@@ -3,9 +3,19 @@ import { connect } from 'react-redux'
 
 class Question extends Component {
 
+    state = {
+        selectedOption: 'option1'
+    }
+
     handleLogOut(){
         console.log("add new answer !!!!")
     }
+
+     handleOptionChange = (e)  =>{
+         this.setState({
+           selectedOption: e.currentTarget.value
+          });
+      }
 
     render() {
         return (
@@ -21,8 +31,8 @@ class Question extends Component {
                     </div>
                     <div className = "right">
                          <p>Would You Rather : </p>
-                        <p><input type="radio" value="option1" checked={true} /> {this.props.OptionOne}</p>
-                        <p><input type="radio" value="option2" checked={false} />{this.props.OptionTwo}</p>
+                        <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne}</p>
+                        <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo}</p>
                         <button onClick={this.handleLogOut}> Submit </button>
                     </div>
                 </div>
