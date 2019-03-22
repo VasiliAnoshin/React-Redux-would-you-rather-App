@@ -37,7 +37,7 @@ class Question extends Component {
                         <img src={this.props.userUrl} alt='logoUrl'className ='pollImg '/>
                     </div>
                     <div className = "middle">
-                        <hr width="1" size="100" ></hr>
+                        <hr width="1" size="190" ></hr>
                     </div>
                     { this.props.vote === false ?
                         <div className = "right">
@@ -49,7 +49,7 @@ class Question extends Component {
                         :
                         <div>
                             <div className = "right">
-                            <p>Results : </p>
+                            <p className = "resText">Results : </p>
                             <div className = {firstOPtion}>
                                 <p> Would you rather : {this.props.OptionOne.text}</p>
                                   <progress max="100" value={(this.props.OptionOne.votes.length/ (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100} 

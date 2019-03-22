@@ -249,6 +249,45 @@ li {
 .questPoll{
   border:0.5px solid black;
   width: 500px;
-  height: 270px;
+  height: 350px;
   margin:  auto;
 }
+.progress-bar {
+   /* background-color: yellow;
+   border-radius: 5px; 
+   box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25) inset; */
+  width: 150px;
+  height: 20px;
+  position: relative;
+  display: block;
+  text-align: center;
+  margin: -10px 65px
+}
+.progress-bar:after {
+  content: attr(value)'%';
+}
+.marked {
+  border-radius: 20px; 
+  background-color: yellow;
+  width: 300px;
+  border:0.5px solid black;
+  margin: -10px -10px 20px 0px; 
+  height: 105px;
+  font-size: 14px;
+  text-align: center;
+}
+.resText{
+  margin: -15px 0px 10px 0px; 
+  font-weight: bold;
+  font-size: 26px;
+}
+.unmarked {
+  border-radius: 10px; 
+  width: 300px;
+  border:0.5px solid black;
+  margin: 20px 10px 20px 0px; 
+  height: 105px;
+  font-size: 14px;
+  text-align: center;
+}
+
