@@ -18,6 +18,16 @@ class Question extends Component {
       }
 
     render() {
+        let firstOPtion, secondOption
+        if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.usersLst[this.props.curUser].id))
+        {
+            firstOPtion = "marked"
+            secondOption = "unmarked"
+        }else{
+            firstOPtion ="unmarked"
+            secondOption = "marked"
+        }
+
         return (
             <div className = "questPoll">
                <p className = "pollAuther">Asked by {this.props.userName} </p>
@@ -32,16 +42,29 @@ class Question extends Component {
                     { this.props.vote === false ?
                         <div className = "right">
                             <p>Would You Rather : </p>
-                            <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne}</p>
-                            <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo}</p>
+                            <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne.text}</p>
+                            <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo.text}</p>
                             <button onClick={this.handleLogOut}> Save Answer </button>
                         </div>
                         :
                         <div>
                             <div className = "right">
                             <p>Results : </p>
-                             <p> Would you rather : {this.props.OptionOne}</p>
-                             <p> Would you rather : {this.props.OptionTwo}</p>
+                            <div className = {firstOPtion}>
+                                <p> Would you rather : {this.props.OptionOne.text}</p>
+                                  <progress max="100" value={(this.props.OptionOne.votes.length/ (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100} 
+                                   className ="progress-bar">
+                                  </progress>
+                                  <p>{this.props.OptionOne.votes.length} out of {this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length} votes</p>
+                            </div>
+                            <div className = {secondOption}>
+                                <p> Would you rather : {this.props.OptionTwo.text}</p>
+                                <progress max="100" value={(this.props.OptionTwo.votes.length / (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100}  
+                                 className ="progress-bar">
+                                     <span >{(this.props.OptionTwo.votes.length / (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100}</span>
+                                </progress>
+                                <p>{this.props.OptionTwo.votes.length} out of {this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length} votes</p>
+                            </div>
                             </div>
                         </div>
                     }
@@ -65,9 +88,9 @@ function mapStateToProps({questions, authedUser, users}, props) {
     console.log(userName);
     userUrl = usersLst[questions[question_id].author].avatarURL;
     console.log(userUrl);
-    OptionOne = allQuestions[question_id].optionOne.text
+    OptionOne = allQuestions[question_id].optionOne
     console.log(OptionOne);
-    OptionTwo = allQuestions[question_id].optionTwo.text
+    OptionTwo = allQuestions[question_id].optionTwo
     console.log(OptionTwo);
 
     let vote = allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
@@ -91,19 +114,16 @@ function mapStateToProps({questions, authedUser, users}, props) {
     // }
 
     return({
-
-        allQuestions,
-        curUser,
-        userUrl,
-        OptionOne,
-        OptionTwo,
-        userName,
-        vote
-        //curUser
-        // userUrl,
-        // OptionOne,
-        // OptionTwo
-    })
+            usersLst,
+            allQuestions,
+            curUser,
+            userUrl,
+            OptionOne,
+            OptionTwo,
+            userName,
+            vote,
+            question_id
+        })
     }
 
 export default  connect(mapStateToProps)(Question)
