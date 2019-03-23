@@ -1,17 +1,26 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
+import {saveAnswer} from '../actions/questions'
 
 class Question extends Component {
+    constructor(){
+        super();
 
-    state = {
-        selectedOption: 'option1'
+        this.state = {
+            selectedOption: 'optionOne' //add selectedOption 
+        }
     }
 
-    handleLogOut(){
+    handleSaveAnswer = (e) =>{
         console.log("add new answer !!!!")
+        const  {dispatch, question_id, userId}  = this.props
+        const {selectedOption} = this.state
+        console.log(userId)
+        dispatch(saveAnswer({userId, question_id, selectedOption})) // <TODO> what happening if questId undefined
+
     }
 
-     handleOptionChange = (e)  =>{
+     handleOptionChange = (e)  =>{ 
          this.setState({
            selectedOption: e.currentTarget.value
           });
@@ -21,10 +30,10 @@ class Question extends Component {
         let firstOPtion, secondOption
         if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.usersLst[this.props.curUser].id))
         {
-            firstOPtion = "marked"
+            firstOPtion  = "marked"
             secondOption = "unmarked"
         }else{
-            firstOPtion ="unmarked"
+            firstOPtion  = "unmarked"
             secondOption = "marked"
         }
 
@@ -42,9 +51,11 @@ class Question extends Component {
                     { this.props.vote === false ?
                         <div className = "right">
                             <p>Would You Rather : </p>
-                            <p><input type="radio" value="option1" checked={this.state.selectedOption === 'option1'} onChange={this.handleOptionChange} /> {this.props.OptionOne.text}</p>
-                            <p><input type="radio" value="option2" checked={this.state.selectedOption === 'option2'} onChange={this.handleOptionChange}/>{this.props.OptionTwo.text}</p>
-                            <button onClick={this.handleLogOut}> Save Answer </button>
+                            <p><input type="radio" value="optionOne" checked={this.state.selectedOption === 'optionOne'} 
+                                                   onChange={this.handleOptionChange} /> {this.props.OptionOne.text}</p>
+                            <p><input type="radio" value="optionTwo" checked={this.state.selectedOption === 'optionTwo'} 
+                                                   onChange={this.handleOptionChange} /> {this.props.OptionTwo.text}</p>
+                            <button onClick={this.handleSaveAnswer}> Save Answer </button>
                         </div>
                         :
                         <div>
@@ -52,7 +63,7 @@ class Question extends Component {
                             <p className = "resText">Results : </p>
                             <div className = {firstOPtion}>
                                 <p> Would you rather : {this.props.OptionOne.text}</p>
-                                  <progress max="100" value={(this.props.OptionOne.votes.length/ (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100} 
+                                  <progress max="100" value={(this.props.OptionOne.votes.length / (this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length))* 100} 
                                    className ="progress-bar">
                                   </progress>
                                   <p>{this.props.OptionOne.votes.length} out of {this.props.OptionOne.votes.length + this.props.OptionTwo.votes.length} votes</p>
@@ -97,22 +108,6 @@ function mapStateToProps({questions, authedUser, users}, props) {
     console.log(allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes))
     console.log(vote)
 
-    // let vote =Object.assign({},allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes).hasOwnProperty(userName)
-    // console.log(Object.assign({},allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes))
-    //let vote = {...allQuestions[question_id].optionOne.votes, allQuestions[question_id].optionTwo.votes }
-    //this.props.history.push(`/ErrorPage`)
-    // questions[question_id] === false ?
-    // {
-    // }
-          
-    //  userUrl = usersLst[questions[question_id].author].avatarURL,
-    // //     //  OptionOne = allQuestions[question_id].optionOne.text,
-    // //     //  OptionTwo = allQuestions[question_id].OptionTwo.text
-    // }:
-    // {
-
-    // }
-
     return({
             usersLst,
             allQuestions,
@@ -122,8 +117,9 @@ function mapStateToProps({questions, authedUser, users}, props) {
             OptionTwo,
             userName,
             vote,
-            question_id
+            question_id,
+            userId : usersLst[curUser].id
         })
     }
 
-export default  connect(mapStateToProps)(Question)
+export default connect(mapStateToProps)(Question)
