@@ -1,7 +1,6 @@
 export const RECEIVE_ALL_QUESTIONS= 'RECEIVE_ALL_QUESTIONS'
 export const ADD_QUESTION = 'ADD_QUESTION'
 export const UPDATE_USER_QUESTIONLIST = 'UPDATE_USER_QUESTIONLIST'
-export const SAVE_ANSWER = "SAVE_ANSWER"
  
 export function receiveQuestions(questions){
     return{
@@ -17,9 +16,3 @@ export function addQuestion (question){
     }
 }
 
-export function saveAnswer(question){
-      return {
-          type: SAVE_ANSWER,
-          question
-      }
-}

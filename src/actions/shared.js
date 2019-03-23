@@ -1,9 +1,10 @@
 import {_getUsers} from '../utils/_DATA'
-import {receiveUsers,addQuestToUser} from '../actions/users'
+import {receiveUsers,addQuestToUser,saveAnswer} from '../actions/users'
 import {showLoading, hideLoading} from 'react-redux-loading'
 import {_getQuestions} from '../utils/_DATA'
 import {receiveQuestions,addQuestion} from '../actions/questions'
-import {_saveQuestion} from '../utils/_DATA'
+import {_saveQuestion,_saveQuestionAnswer} from '../utils/_DATA'
+
 
 export function handleInitialUsers() {
     return(dispatch) =>{
@@ -40,4 +41,15 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
         })
         .then(() => dispatch(hideLoading()))
     }
+}
+
+export function handleSaveAnswer(userId, question_id, selectedOption){
+     return (dispatch, getState) => {
+          dispatch(showLoading())
+          return _saveQuestionAnswer({
+              userId,
+              question_id,
+              selectedOption
+          })
+     }
 }

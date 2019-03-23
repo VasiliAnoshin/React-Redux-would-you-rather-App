@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
-import {saveAnswer} from '../actions/questions'
+import {handleSaveAnswer} from '../actions/shared'
 
 class Question extends Component {
     constructor(){
@@ -16,8 +16,7 @@ class Question extends Component {
         const  {dispatch, question_id, userId}  = this.props
         const {selectedOption} = this.state
         console.log(userId)
-        dispatch(saveAnswer({userId, question_id, selectedOption})) // <TODO> what happening if questId undefined
-
+        dispatch(handleSaveAnswer(userId, question_id, selectedOption)) // <TODO> what happening if questId undefined
     }
 
      handleOptionChange = (e)  =>{ 
@@ -28,7 +27,7 @@ class Question extends Component {
 
     render() {
         let firstOPtion, secondOption
-        if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.usersLst[this.props.curUser].id))
+        if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.userId))
         {
             firstOPtion  = "marked"
             secondOption = "unmarked"
