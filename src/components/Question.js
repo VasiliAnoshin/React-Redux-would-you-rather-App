@@ -7,15 +7,13 @@ class Question extends Component {
         super();
 
         this.state = {
-            selectedOption: 'optionOne' //add selectedOption 
+            selectedOption: 'optionOne'
         }
     }
 
     handleSaveAnswer = (e) =>{
-        console.log("add new answer !!!!")
-        const  {dispatch, question_id, userId}  = this.props
+        const {dispatch, question_id, userId}  = this.props
         const {selectedOption} = this.state
-        console.log(userId)
         dispatch(handleSaveAnswer(userId, question_id, selectedOption)) // <TODO> what happening if questId undefined
     }
 
@@ -91,21 +89,13 @@ function mapStateToProps({questions, authedUser, users}, props) {
     const allQuestions = questions //< TODO > Decide is i need all questions  ??? 
     console.log(allQuestions)
     const curUser = authedUser
-    console.log(curUser)
     const usersLst = users 
     let userName, userUrl, OptionOne,  OptionTwo;
     userName = usersLst[questions[question_id].author].name;
-    console.log(userName);
     userUrl = usersLst[questions[question_id].author].avatarURL;
-    console.log(userUrl);
     OptionOne = allQuestions[question_id].optionOne
-    console.log(OptionOne);
     OptionTwo = allQuestions[question_id].optionTwo
-    console.log(OptionTwo);
-
     let vote = allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
-    console.log(allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes))
-    console.log(vote)
 
     return({
             usersLst,

@@ -1,5 +1,5 @@
 import {_getUsers} from '../utils/_DATA'
-import {receiveUsers,addQuestToUser,saveAnswer} from '../actions/users'
+import {receiveUsers,addQuestToUser} from '../actions/users'
 import {showLoading, hideLoading} from 'react-redux-loading'
 import {_getQuestions} from '../utils/_DATA'
 import {receiveQuestions,addQuestion} from '../actions/questions'
@@ -47,7 +47,7 @@ export function handleSaveAnswer(userId, question_id, selectedOption){
      return (dispatch, getState) => {
 
           dispatch(showLoading())
-          
+
           return _saveQuestionAnswer({
               authedUser : userId,
               qid: question_id,
