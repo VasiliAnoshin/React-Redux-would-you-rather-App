@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {handleSaveAnswer} from '../actions/shared'
+import {NavLink} from 'react-router-dom'
 
 class Question extends Component {
     constructor(){
@@ -24,6 +25,12 @@ class Question extends Component {
       }
 
     render() {
+        if(this.props.userName === null){
+            return(
+                <NavLink to ='/ErrorPage'></NavLink>
+            )
+        }
+
         let firstOPtion, secondOption
         if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.userId))
         {
@@ -85,17 +92,17 @@ class Question extends Component {
 function mapStateToProps({questions, authedUser, users}, props) {
     //< TODO > What to do if question doesn't exist
     const{question_id} = props.match.params;
-    console.log(question_id)
-    const allQuestions = questions //< TODO > Decide is i need all questions  ??? 
-    console.log(allQuestions)
+    const allQuestions = questions
     const curUser = authedUser
     const usersLst = users 
     let userName, userUrl, OptionOne,  OptionTwo;
-    userName = usersLst[questions[question_id].author].name;
-    userUrl = usersLst[questions[question_id].author].avatarURL;
-    OptionOne = allQuestions[question_id].optionOne
-    OptionTwo = allQuestions[question_id].optionTwo
-    let vote = allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
+    const curQuestion = questions[question_id]
+    userName =  (curQuestion === undefined) ? null : usersLst[questions[question_id].author].name;
+    console.log(userName)
+    userUrl = (curQuestion === undefined) ? null : usersLst[questions[question_id].author].avatarURL;
+    OptionOne = (curQuestion === undefined) ? null : allQuestions[question_id].optionOne
+    OptionTwo = (curQuestion === undefined) ? null : allQuestions[question_id].optionTwo
+    let vote = (curQuestion === undefined) ? null  :allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
 
     return({
             usersLst,
