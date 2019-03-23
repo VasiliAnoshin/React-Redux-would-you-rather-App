@@ -46,10 +46,12 @@ export function handleAddQuestion (optionOneText, optionTwoText) {
 export function handleSaveAnswer(userId, question_id, selectedOption){
      return (dispatch, getState) => {
           dispatch(showLoading())
+            
           return _saveQuestionAnswer({
-              userId,
-              question_id,
-              selectedOption
+              authedUser : userId,
+              qid: question_id,
+              answer: selectedOption
           })
+        .then(() => dispatch(hideLoading()))
      }
 }
