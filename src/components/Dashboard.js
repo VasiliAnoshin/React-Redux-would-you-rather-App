@@ -30,8 +30,7 @@ class Dashboard extends Component{
 
     render(){
         this.Answered = ''
-        return(
-            // <PollList />           
+        return(       
             <div>
                 <ul className ='SubMenu'>
                     <li className ='SubMenuOption'>

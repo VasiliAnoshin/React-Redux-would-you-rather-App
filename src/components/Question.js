@@ -1,7 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {handleSaveAnswer} from '../actions/shared'
-import {NavLink} from 'react-router-dom'
 import {withRouter} from "react-router-dom";
 
 class Question extends Component {
@@ -61,7 +60,7 @@ class Question extends Component {
                                                    onChange={this.handleOptionChange} /> {this.props.OptionOne.text}</p>
                             <p><input type="radio" value="optionTwo" checked={this.state.selectedOption === 'optionTwo'} 
                                                    onChange={this.handleOptionChange} /> {this.props.OptionTwo.text}</p>
-                            <button onClick={this.handleSaveAnswer}> Save Answer </button>
+                            <button onClick={this.handleSaveAnswer} className ="btn"> Save Answer </button>
                         </div>
                         :
                         <div>
@@ -92,7 +91,6 @@ class Question extends Component {
 }
 
 function mapStateToProps({questions, authedUser, users}, props) {
-    //< TODO > What to do if question doesn't exist
     const{question_id} = props.match.params;
     const allQuestions = questions
     const curUser = authedUser
@@ -100,11 +98,10 @@ function mapStateToProps({questions, authedUser, users}, props) {
     let userName, userUrl, OptionOne,  OptionTwo;
     const curQuestion = questions[question_id]
     userName =  (curQuestion === undefined) ? null : usersLst[questions[question_id].author].name;
-    console.log(userName)
-    userUrl = (curQuestion === undefined) ? null : usersLst[questions[question_id].author].avatarURL;
+    userUrl =   (curQuestion === undefined) ? null : usersLst[questions[question_id].author].avatarURL;
     OptionOne = (curQuestion === undefined) ? null : allQuestions[question_id].optionOne
     OptionTwo = (curQuestion === undefined) ? null : allQuestions[question_id].optionTwo
-    let vote = (curQuestion === undefined) ? null  :allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
+    let vote =  (curQuestion === undefined) ? null : allQuestions[question_id].optionOne.votes.concat(allQuestions[question_id].optionTwo.votes).includes(usersLst[authedUser].id)
 
     return({
             usersLst,

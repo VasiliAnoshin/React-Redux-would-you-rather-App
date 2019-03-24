@@ -18,9 +18,10 @@ class Poll extends Component {
                     <div className = "right">
                         <p> Would you rather : </p>
                         <p> {this.props.questionText} </p>
-                        <div>
-                            <Link to={`/questions/${this.props.questionId}`}>Poll Option</Link>
-                        </div>
+                        <Link to={`/questions/${this.props.questionId}`} className = "linkBtn">View Poll</Link>
+                    </div>
+                    <div>
+                          
                     </div>
                 </div>
             </div>
