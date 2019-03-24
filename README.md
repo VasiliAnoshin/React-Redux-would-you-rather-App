@@ -25,9 +25,9 @@ Users will be able to answer questions, see which questions they haven’t answe
 Download the project.
 From your terminal, get to the project directory, then run these commands:
 
-npm install
+<b>npm install</b>
 
-npm start
+<b>npm start</b>
 
 This will open the app in the development mode on your browser at http://localhost:3000
 
