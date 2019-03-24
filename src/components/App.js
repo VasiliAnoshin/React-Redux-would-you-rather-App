@@ -40,7 +40,7 @@ class App extends Component {
                     <Route path='/add' exact component ={NewQuestion} />
                     <Route path='/leaderBoard' exact component = {LeaderBoard} />
                     <Route path = '/questions/:question_id' component = {Question}/>
-                    <Route path = '/ErrorPage' component = {ErrorPage} />
+                    <Route component = {ErrorPage} />
                   </Switch>
                 </div> 
             }
