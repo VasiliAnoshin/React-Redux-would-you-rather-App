@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {handleSaveAnswer} from '../actions/shared'
 import {NavLink} from 'react-router-dom'
+import {withRouter} from "react-router-dom";
 
 class Question extends Component {
     constructor(){
@@ -27,7 +28,8 @@ class Question extends Component {
     render() {
         if(this.props.userName === null){
             return(
-                <NavLink to ='/ErrorPage'></NavLink>
+                // <NavLink to ='/ErrorPage'></NavLink>
+                this.props.history.push('/ErrorPage')
             )
         }
 
@@ -118,4 +120,4 @@ function mapStateToProps({questions, authedUser, users}, props) {
         })
     }
 
-export default connect(mapStateToProps)(Question)
+export default withRouter(connect(mapStateToProps)(Question))
