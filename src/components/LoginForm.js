@@ -11,7 +11,6 @@ class LoginForm extends Component
         const {dispatch} = this.props
         const id = this.selectVal.value
         dispatch(setAuthedUser(id))
-        // this.props.history.push('/')
     }
 
     render(){
