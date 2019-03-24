@@ -16,7 +16,7 @@ class Question extends Component {
     handleSaveAnswer = (e) =>{
         const {dispatch, question_id, userId}  = this.props
         const {selectedOption} = this.state
-        dispatch(handleSaveAnswer(userId, question_id, selectedOption)) // <TODO> what happening if questId undefined
+        dispatch(handleSaveAnswer(userId, question_id, selectedOption))
     }
 
      handleOptionChange = (e)  =>{ 
@@ -28,11 +28,11 @@ class Question extends Component {
     render() {
         if(this.props.userName === null){
             return(
-                // <NavLink to ='/ErrorPage'></NavLink>
-                this.props.history.push('/ErrorPage')
+                <div className="errorPage">
+                    <p>404 Error ! Page doesn't exist !!!</p>
+                 </div>  
             )
         }
-
         let firstOPtion, secondOption
         if(this.props.allQuestions[this.props.question_id].optionOne.votes.includes(this.props.userId))
         {
