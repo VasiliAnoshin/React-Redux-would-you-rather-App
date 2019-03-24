@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 class Poll extends Component {
     render(){
         return(
-
             <div className = "poll">
                 <p className = "pollAuther"> {this.props.userName} asks : </p>
                  <hr/>
@@ -21,7 +20,6 @@ class Poll extends Component {
                         <Link to={`/questions/${this.props.questionId}`} className = "linkBtn">View Poll</Link>
                     </div>
                     <div>
-                          
                     </div>
                 </div>
             </div>
@@ -29,4 +27,4 @@ class Poll extends Component {
     }
 }
 
-export default (Poll);
+export default Poll;
